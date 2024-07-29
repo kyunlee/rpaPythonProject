@@ -1,16 +1,34 @@
 import pyautogui as p 
 import time
-import selenium # 여기서는 약자를 붙이지 않았다.
+
+# selenium의 webdriver를 사용하기 위한 import
 from selenium import webdriver
 
-#time.sleep(2) # 2초간 인터벌을 인위적으로 부여한다.
-#p.position() # 현재 x축과 y축의 좌표
+from selenium.webdriver.common.by import By
 
-#Point(x = 1379, y= 97)
+# selenium으로 키를 조작하기 위한 import
+from selenium.webdriver.common.keys import Keys
 
-#p.onScreen(300, 300)
-#p.moveTo(300, 300, duration=1)
- 
-#p.alert(text='확인되엇습니다.', title = '인증', button='Ok')
 
-dirver = webdriver.Chrome('chromedriver.exe')
+# 페이지 로딩을 기다리는데에 사용할 time 모듈 import
+import time
+
+# 크롬드라이버 실행
+driver = webdriver.Chrome() 
+
+#크롬 드라이버에 url 주소 넣고 실행
+driver.get('https://www.google.co.kr/')
+
+# 검색창 찾기
+search_box = driver.find_element(By.NAME, 'q')
+
+# 검색어 입력
+search_box.send_keys('파이썬')
+
+#검색 실행
+search_box.send_keys(Keys.RETURN)
+
+# 페이지가 완전히 로딩되도록 3초동안 기다림
+time.sleep(3)
+
+
